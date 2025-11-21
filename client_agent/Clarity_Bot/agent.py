@@ -8,13 +8,9 @@ from google.adk.agents.remote_a2a_agent import AGENT_CARD_WELL_KNOWN_PATH
 from google.adk.agents.remote_a2a_agent import RemoteA2aAgent
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
 
-
 FIRECRAWL_API_KEY = os.getenv('FIRECRAWL_API_KEY')
-
-
 
 remote_carbon_design_system_agent = RemoteA2aAgent(
     name="carbon_design_system_agent",
