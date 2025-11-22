@@ -42,22 +42,60 @@ The organization needs to assess whether current investments in manpower and sys
 
 We have created a One Stop AI assistant called **Clarity** which will assist employee about Organization policies and project documents with seamless information's.
 
+Here the below details of our Enterprise Agent :
+
 ![Agent Diagram](./architecture_diagram.jpeg)
 
 
-There are 3 agents involved:
+**Clarity Agent (Client)**:
 
-1. **AI Assistant:** This is a local  agent (Clarity) where user will communicate directly.
+*   This Agent acts as the initial processing layer which will accept all user queries.
+*   Its primary role is to receive raw queries and prepare them for deeper analysis.
+*   It ensures that queries are structured and interpretable before moving forward.
+*   At this stage, the Clarity Agent determines the **nature and intent** of the query.
+*   The analysis splits queries into two major categories:
+    *   **Organization Queries**: Related to company policies, payroll, HR guidelines, compliance, etc.
+    *   **Project Queries**: Related to development tasks, testing procedures, design systems, and technical implementations.
 
-2. **Specialized Agents:** 
-  *   **Organization Agent**:
+**Specialized Agents**:
+
+* Based on the context, queries are routed to appropriate agents by Clarity Agent intelligently:
+    *   **Organization Agent**:
         *   Handles organizational-level queries.
-        *   Provides information on HR policies, payroll, and other administrative matters by using FireCrawl MCP server.
-  *   **Remote Design System Agent**:
-        *   Handles project-related queries by calling dcarbon design system project Agent which is hosted in external server through A2A protocol.
+        *   Provides information on HR policies, payroll, and other administrative matters.
+        * **Tools**: 
+            **Fire Crawl MCP Server** which will extract the content of Organization policies from external   site.
+        * **Current scope** : 
+               For Demo purpose , Agent is set up to retrieve content only about Organization policies.
+        *  **Future scope**  
+               New user tool can be created to retrieve information like paysheet , Balance leave etc., from HR               system through API or DB query.
+
+    *   **Remote Design System Agent**:
+        *   Handles project-related queries by calling design system project Agent which is hosted in external   server through A2A protocol.
         *   Focuses on technical aspects such as development standards, testing frameworks, and design systems.
-    
-3. **Carbon Design System Agent:** This is the remote agent which helps in providing project related information using Firecrawl API.
+
+**Remote Server Integration**
+
+*   The remote server hosts specialized agents, such as:
+    *   **Carbon Design System Project Agent**:
+        *   Dedicated to managing and answering queries related to the Carbon Design System project.
+        *   Supports design consistency and implementation guidelines across projects.
+*   Communication between local remote design system agent and remote agents occurs through **A2A (Agent-to-Agent)** protocol, ensuring seamless data exchange and collaboration.
+* **Tools** 
+ 
+Here we are using **Fire Crawl MCP Server** which will extract the content of project documents hosted in github repo.
+       
+
+### **Key Benefits of This Workflow**
+
+*   **Context-Aware Routing**: Queries are intelligently directed to the right agent based on their nature.
+*   **Resource Access**: Timely resource access  for both new hires and existing employee.
+*   **Scalability**: Supports both organizational and project-level queries without manual intervention.
+*   **Integration with Remote Systems**: Enables access to specialized knowledge bases and tools hosted externally through A2A protocol . We can spin up more such project specific agents and provide access to employee based on their assignment.
+*   **Automation**: Reduces human effort by automating query analysis and resolution.
+
+
+***
 
 ---
 
