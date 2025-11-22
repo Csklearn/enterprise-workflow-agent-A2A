@@ -12,6 +12,13 @@ load_dotenv()
 
 FIRECRAWL_API_KEY = os.getenv('FIRECRAWL_API_KEY')
 
+retry_config = types.HttpRetryOptions(
+    attempts=5,  # Maximum retry attempts
+    exp_base=7,  # Delay multiplier
+    initial_delay=1,
+    http_status_codes=[429, 500, 503, 504],  # Retry on these HTTP errors
+)
+
 remote_carbon_design_system_agent = RemoteA2aAgent(
     name="carbon_design_system_agent",
     description="A helpful assistant for Carbon Design System Project",
@@ -20,12 +27,6 @@ remote_carbon_design_system_agent = RemoteA2aAgent(
     ),
 )
 
-retry_config = types.HttpRetryOptions(
-    attempts=5,  # Maximum retry attempts
-    exp_base=7,  # Delay multiplier
-    initial_delay=1,
-    http_status_codes=[429, 500, 503, 504],  # Retry on these HTTP errors
-)
 
 organization_agent = Agent(
     model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_config),
@@ -55,19 +56,14 @@ root_agent = Agent(
         - **Organization Query**: Related to HR policies, payroll, benefits, compliance, company guidelines.
         - **Project Query**: Related to development tasks, testing procedures, design systems, technical implementations.
     4. **Route the query** to the appropriate agent:
-        - If it's an **Organization Query**, forward to the **Organization Agent**.
-        - If it's a **Project Query**, forward to the **remote_project_A_agent**.
+        - If it's an **Organization Query**, forward to the **organization_agent**.
+        - If it's a **Project Query**, forward to the **remote_carbon_design_system_agent**.
         - If the query is ambiguous or unclear, request clarification from the user.
         Rules:
         - Do not answer the query yourself.
         - Do not perform any business logic or data retrieval.
         - Your sole responsibility is classification and routing.
 
-    Examples:
-        - "Can you help me with leave policy?" → Organization Query → Organization Agent
-        - "Can you help me with Dev sprint planning?" → Project Query → Remote Agent
-        - "Can you help me with payroll details?" → Organization Query → Organization Agent
-        - "Where is the deployment process detils?" → Project Query → Remote Agent
 
     Output Format:
         - Return a structured response indicating the **query type** and the **target agent**.
