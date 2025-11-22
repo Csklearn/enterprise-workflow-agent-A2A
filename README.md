@@ -97,8 +97,6 @@ Here we are using **Fire Crawl MCP Server** which will extract the content of pr
 
 ***
 
----
-
 ## Prerequisites
 
 - Python installed
