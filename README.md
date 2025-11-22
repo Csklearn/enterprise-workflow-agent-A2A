@@ -1,9 +1,49 @@
 
-# Enterprise WorkFlow Agent - MultiAgent/A2A Demo
+# Enterprise WorkFlow Agent - MultiAgent/A2A 
+
+**Title** :  Enterprise Agent - One Stop AI assistant for organization and project related queries
+
+**Problem Statement # 1 :**
+
+Currently  Organizations are investing heavily in manpower and systems to provide employees with timely access to company policies, resources, and essential tools. Despite these investments, many face persistent challenges such as:
+
+*  **Fragmented information delivery**: Policies and access details are scattered across multiple platforms, making it difficult for employees to find accurate and updated information.
+* **Manual dependency**: Significant human effort is required to manage requests for policy documents, system access, and compliance checks, leading to inefficiencies and delays.
+* **Inconsistent employee experience**: Lack of a unified system results in confusion, slower onboarding, and reduced productivity.
+* **Compliance risks**: Delays or errors in granting access to critical systems and policies can lead to non-compliance with regulatory requirements.
+* **High operational costs**: Maintaining separate teams and systems without automation increases overhead.
+
+The organization needs to evaluate whether current investments in manpower and technology are delivering value and identify opportunities to centralize, automate, and standardize the process of providing policy information and system access. The goal is to improve efficiency, reduce costs, enhance employee experience, and ensure compliance.
+
+**Problem Statement # 2:**
+
+Organizations often invest in document management systems and dedicated teams to ensure employees can access project-related documents efficiently. 
+
+However, several challenges persist:
+
+* **Fragmented storage**: Project documents are spread across multiple platforms (email, shared drives, collaboration tools), making retrieval time-consuming.
+* **Access control issues**: Employees face delays in obtaining permissions for critical documents, impacting project timelines.
+* **Lack of standardization**: Inconsistent naming conventions and version control lead to confusion and errors.
+* **Manual dependency**: Significant human effort is required to manage document requests and maintain repositories.
+* **Reduced productivity**: Difficulty in locating accurate and updated documents slows down decision-making and collaboration.
+
+The organization needs to assess whether current investments in manpower and systems are delivering value and identify opportunities to centralize, automate, and secure document access. The goal is to improve efficiency, ensure compliance, and enhance collaboration across teams.
+
+**Common Issues** :
+
+* Delay in providing access to company policies, essential tools, and project-related documents for 
+   both new hires during onboarding and existing team members
+* More Manual dependency.
+* Slower project ramp-up.
+* Compliance risks. 
+* High operational costs and reduced productivity.
+
+**Solution**:
+
+We have created a One Stop AI assistant called **Clarity** which will assist employee about Organization policies and project documents with seamless information's.
 
 ![Agent Diagram](./architecture_diagram.jpeg)
 
-This project contains demo of Enterprise workflow Agent **(Clarity)** using Google ADK.
 
 There are 3 agents involved:
 
@@ -14,7 +54,7 @@ There are 3 agents involved:
         *   Handles organizational-level queries.
         *   Provides information on HR policies, payroll, and other administrative matters by using FireCrawl MCP server.
   *   **Remote Design System Agent**:
-        *   Handles project-related queries by calling design system project Agent which is hosted in external server through A2A protocol.
+        *   Handles project-related queries by calling dcarbon design system project Agent which is hosted in external server through A2A protocol.
         *   Focuses on technical aspects such as development standards, testing frameworks, and design systems.
     
 3. **Carbon Design System Agent:** This is the remote agent which helps in providing project related information using Firecrawl API.
