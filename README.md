@@ -1,103 +1,104 @@
+# 📑 Enterprise Workflow Agent – MultiAgent/A2A  
+**Title:** Enterprise Agent – One Stop AI Assistant for Organization and Project Queries  
 
-# Enterprise WorkFlow Agent - MultiAgent/A2A 
+---
 
-**Title** :  Enterprise Agent - One Stop AI assistant for organization and project related queries
+## 🚨 Problem Statement #1: Organizational Queries  
+Organizations struggle to provide employees with timely access to policies, resources, and tools due to:  
+- **Fragmented information delivery** – scattered across multiple platforms.  
+- **Manual dependency** – HR/admin teams spend time handling repetitive requests.  
+- **Inconsistent employee experience** – onboarding and daily queries are slow.  
+- **Compliance risks** – delays/errors in granting access lead to regulatory issues.  
+- **High operational costs** – multiple systems and teams without automation.  
 
-**Problem Statement # 1 :**
+**Goal:** Centralize, automate, and standardize policy/system access to improve efficiency, reduce costs, enhance employee experience, and ensure compliance.  
 
-Currently  Organizations are investing heavily in manpower and systems to provide employees with timely access to company policies, resources, and essential tools. Despite these investments, many face persistent challenges such as:
+---
 
-*  **Fragmented information delivery**: Policies and access details are scattered across multiple platforms, making it difficult for employees to find accurate and updated information.
-* **Manual dependency**: Significant human effort is required to manage requests for policy documents, system access, and compliance checks, leading to inefficiencies and delays.
-* **Inconsistent employee experience**: Lack of a unified system results in confusion, slower onboarding, and reduced productivity.
-* **Compliance risks**: Delays or errors in granting access to critical systems and policies can lead to non-compliance with regulatory requirements.
-* **High operational costs**: Maintaining separate teams and systems without automation increases overhead.
+## 🚨 Problem Statement #2: Project Queries  
+Project-related document access faces similar inefficiencies:  
+- **Fragmented storage** – spread across email, drives, collaboration tools.  
+- **Access control issues** – delays in permissions impact timelines.  
+- **Lack of standardization** – inconsistent naming/versioning causes confusion.  
+- **Manual dependency** – human effort required for document retrieval.  
+- **Reduced productivity** – difficulty locating updated documents slows collaboration.  
 
-The organization needs to evaluate whether current investments in manpower and technology are delivering value and identify opportunities to centralize, automate, and standardize the process of providing policy information and system access. The goal is to improve efficiency, reduce costs, enhance employee experience, and ensure compliance.
+**Goal:** Centralize, automate, and secure project document access to improve efficiency, compliance, and collaboration.  
 
-**Problem Statement # 2:**
+---
 
-Organizations often invest in document management systems and dedicated teams to ensure employees can access project-related documents efficiently. 
+## ⚠️ Common Issues Across Both Domains  
+- Delays in providing access to policies, tools, and documents.  
+- Heavy manual dependency.  
+- Slower project ramp-up.  
+- Compliance risks.  
+- High operational costs and reduced productivity.  
 
-However, several challenges persist:
+---
+  
+## 💡 Solution: Clarity – One Stop AI Assistant  
+Clarity is designed as a **multi-agent system** that intelligently routes queries to specialized agents, ensuring seamless access to organizational and project information.  
 
-* **Fragmented storage**: Project documents are spread across multiple platforms (email, shared drives, collaboration tools), making retrieval time-consuming.
-* **Access control issues**: Employees face delays in obtaining permissions for critical documents, impacting project timelines.
-* **Lack of standardization**: Inconsistent naming conventions and version control lead to confusion and errors.
-* **Manual dependency**: Significant human effort is required to manage document requests and maintain repositories.
-* **Reduced productivity**: Difficulty in locating accurate and updated documents slows down decision-making and collaboration.
-
-The organization needs to assess whether current investments in manpower and systems are delivering value and identify opportunities to centralize, automate, and secure document access. The goal is to improve efficiency, ensure compliance, and enhance collaboration across teams.
-
-**Common Issues** :
-
-* Delay in providing access to company policies, essential tools, and project-related documents for 
-   both new hires during onboarding and existing team members
-* More Manual dependency.
-* Slower project ramp-up.
-* Compliance risks. 
-* High operational costs and reduced productivity.
-
-**Solution**:
-
-We have created a One Stop AI assistant called **Clarity** which will assist employee about Organization policies and project documents with seamless information's.
-
-Here the below details of our Enterprise Agent :
+### Archiecture Diagram :
 
 ![Agent Diagram](./architecture_diagram.jpeg)
 
 
-**Clarity Agent (Client)**:
+### 🧩 Clarity Agent (Client Layer)  
+- Accepts raw queries from employees.  
+- Prepares queries for deeper analysis.  
+- Determines **nature and intent** (Organization vs Project).  
+- Routes queries to specialized agents via **context-aware routing**.  
 
-*   This Agent acts as the initial processing layer which will accept all user queries.
-*   Its primary role is to receive raw queries and prepare them for deeper analysis.
-*   It ensures that queries are structured and interpretable before moving forward.
-*   At this stage, the Clarity Agent determines the **nature and intent** of the query.
-*   The analysis splits queries into two major categories:
-    *   **Organization Queries**: Related to company policies, payroll, HR guidelines, compliance, etc.
-    *   **Project Queries**: Related to development tasks, testing procedures, design systems, and technical implementations.
+---
 
-**Specialized Agents**:
+### 🏢 Organization Agent  
+- Handles HR, payroll, compliance, and policy queries.  
+- Uses **Fire Crawl MCP Server** to extract policy content from external sites.  
+- **Current Scope:** Demo setup for retrieving organizational policies.  
+- **Future Scope:** Integration with HR systems (API/DB) for paysheets, leave balances, etc.  
 
-* Based on the context, queries are routed to appropriate agents by Clarity Agent intelligently:
-    *   **Organization Agent**:
-        *   Handles organizational-level queries.
-        *   Provides information on HR policies, payroll, and other administrative matters.
-        * **Tools**: 
-            **Fire Crawl MCP Server** which will extract the content of Organization policies from external   site.
-        * **Current scope** : 
-               For Demo purpose , Agent is set up to retrieve content only about Organization policies.
-        *  **Future scope**  
-               New user tool can be created to retrieve information like paysheet , Balance leave etc., from HR               system through API or DB query.
+---
 
-    *   **Remote Design System Agent**:
-        *   Handles project-related queries by calling design system project Agent which is hosted in external   server through A2A protocol.
-        *   Focuses on technical aspects such as development standards, testing frameworks, and design systems.
+### 🛠️ Remote Design System Agent  
+- Handles project-related queries.  
+- Connects to external project agents via **A2A protocol**.  
+- Example: **Carbon Design System Project Agent** for design consistency and implementation guidelines.  
+- Uses **Fire Crawl MCP Server** to extract project documents from GitHub repositories.  
 
-**Remote Server Integration**
+---
 
-*   The remote server hosts specialized agents, such as:
-    *   **Carbon Design System Project Agent**:
-        *   Dedicated to managing and answering queries related to the Carbon Design System project.
-        *   Supports design consistency and implementation guidelines across projects.
-*   Communication between local remote design system agent and remote agents occurs through **A2A (Agent-to-Agent)** protocol, ensuring seamless data exchange and collaboration.
-* **Tools** 
- 
-Here we are using **Fire Crawl MCP Server** which will extract the content of project documents hosted in github repo.
-       
+### 🔗 Remote Server Integration  
+- Specialized agents hosted externally (e.g., Carbon Design System Agent).  
+- Seamless communication via **Agent-to-Agent (A2A) protocol**.  
+- Scalable – new project-specific agents can be spun up as needed.  
 
-### **Key Benefits of This Workflow**
+---
 
-*   **Context-Aware Routing**: Queries are intelligently directed to the right agent based on their nature.
-*   **Resource Access**: Timely resource access  for both new hires and existing employee.
-*   **Scalability**: Supports both organizational and project-level queries without manual intervention.
-*   **Integration with Remote Systems**: Enables access to specialized knowledge bases and tools hosted externally through A2A protocol . We can spin up more such project specific agents and provide access to employee based on their assignment.
-*   **Automation**: Reduces human effort by automating query analysis and resolution.
+## 🌟 Key Benefits of Clarity Workflow  
+| Benefit | Impact |
+|---------|--------|
+| **Context-Aware Routing** | Queries directed to the right agent automatically |
+| **Resource Access** | Faster onboarding and support for employees |
+| **Scalability** | Supports both organizational and project queries |
+| **Remote Integration** | Access specialized knowledge bases via A2A |
+| **Automation** | Reduces manual effort and operational costs |
+| **Compliance** | Ensures timely and accurate access to policies/documents |
 
+---
+
+## 🚀 Strategic Value  
+- **Efficiency Gains:** Automated query handling reduces turnaround time.  
+- **Cost Reduction:** Lower manpower dependency and system overhead.  
+- **Employee Experience:** Unified access point improves onboarding and daily productivity.  
+- **Compliance Assurance:** Timely access reduces regulatory risks.  
+- **Future-Proofing:** Scalable architecture supports new agents and integrations.
 
 ***
 
-## Prerequisites
+## Setup environment
+
+### Prerequisites
 
 - Python installed
 - **Gemini API** key
@@ -108,7 +109,6 @@ Here we are using **Fire Crawl MCP Server** which will extract the content of pr
 - [Google Application Credential Set up in Environtment variable](https://docs.cloud.google.com/docs/authentication/application-default-credentials)
 ---
 
-## Setup environment
 
 ### 1. Clone the Repository
 ```bash
